@@ -17,7 +17,7 @@
         function uploadFile() {
             const fileInput = document.getElementById('fileInput');
             const file = fileInput.files[0];
-            const url = "https://sunbirddevbbpublic.blob.core.windows.net/sunbird-content-staging-knowlg/content/assets/do_213858653451984896111/sample.mp4?sv=2017-04-17&se=2023-08-18T00%3A22%3A47Z&sr=b&sp=w&sig=t90icPPgdlO08LqUPVl1CQuI5JKIPM3KOESQidcCvl0%3D"
+            const url = "https://sunbirdstagingpublic.blob.core.windows.net/sunbird-content-staging/content/assets/do_21388841038262272011/sample-document.pdf?sv=2017-04-17&se=2023-09-22T21%3A03%3A18Z&sr=b&sp=w&sig=FWxBIq7FTC2/HRnAfbpMWydakG%2B5NsRuotrqlgKlryE%3D"
             uploader.upload({url, file, csp: "azure", maxFileSizeForChunking: 50})
             .on("error", (error) => console.log(error))
             .on("progress", (progress) => console.log(progress))

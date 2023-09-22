@@ -1,7 +1,11 @@
 // webpack.config.js
-const path = require('path');
+import path from "path";
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
 
-module.exports = {
+const __dirname = path.dirname(__filename);
+
+export default  {
   entry: './lib/index.js',
   output: {
     filename: 'sunbird-file-upload-library.js',
@@ -10,5 +14,5 @@ module.exports = {
     libraryTarget: 'umd',
     globalObject: 'this',
   },
-  mode: 'production',
+  mode: 'production'
 };
