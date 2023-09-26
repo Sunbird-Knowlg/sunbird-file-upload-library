@@ -6,7 +6,7 @@
   "main": "dist/main.js",
   "type": "module",
   "scripts": {
-    "test": "c8 -r html jasmine",
+    "test": "karma start karma.conf.cjs",
     "test-watch": "c8 -r html mocha lib/**.test.js --watch",
     "build": "webpack",
     "watch": "webpack --watch",
@@ -22,6 +22,11 @@
   "devDependencies": {
     "c8": "^8.0.1",
     "jasmine": "^5.1.0",
+    "karma": "^6.4.2",
+    "karma-chrome-launcher": "^3.2.0",
+    "karma-jasmine": "^5.1.0",
+    "karma-webpack": "^5.0.0",
+    "puppeteer": "^21.3.4",
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4"
   },
