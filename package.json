@@ -24,6 +24,7 @@
     "jasmine": "^5.1.0",
     "karma": "^6.4.2",
     "karma-chrome-launcher": "^3.2.0",
+    "karma-coverage": "^2.2.1",
     "karma-jasmine": "^5.1.0",
     "karma-webpack": "^5.0.0",
     "puppeteer": "^21.3.4",

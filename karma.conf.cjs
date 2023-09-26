@@ -10,7 +10,8 @@ module.exports = function (config) {
     plugins: [
       'karma-webpack',
       'karma-jasmine',
-      'karma-chrome-launcher'
+      'karma-chrome-launcher',
+      'karma-coverage'
     ],
 
     // frameworks to use
@@ -20,7 +21,7 @@ module.exports = function (config) {
 
     // list of files / patterns to load in the browser
     files: [
-      { pattern: 'lib/*.spec.js', watched: false }
+      'lib/*.js'
     ],
 
 
@@ -32,8 +33,8 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
     preprocessors: {
-      // add webpack as preprocessor
-      'lib/*.spec.js': ['webpack']
+      'lib/*.js': ['webpack'],
+      'lib/!(*test|*spec)*.js':['coverage']
     },
 
     webpack: {},
@@ -41,7 +42,7 @@ module.exports = function (config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://www.npmjs.com/search?q=keywords:karma-reporter
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage'],
 
     client: { clearContext: false },
 
@@ -62,11 +63,14 @@ module.exports = function (config) {
     autoWatch: true,
 
 
-
+    // coverageReporter: {
+    //   type : 'html',
+    //   dir : 'coverage/'
+    // },
 
     // start these browsers
     // available browser launchers: https://www.npmjs.com/search?q=keywords:karma-launcher
-    browsers: ['ChromeHeadless'], // <- not 'ChromeHeadless'
+    browsers: ['ChromeHeadless'], 
    
 
 
