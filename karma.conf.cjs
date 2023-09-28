@@ -16,12 +16,12 @@ module.exports = function (config) {
 
     // frameworks to use
     // available frameworks: https://www.npmjs.com/search?q=keywords:karma-adapter
-    frameworks: ['jasmine', 'webpack'],
+    frameworks: ['jasmine'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'lib/*.js'
+      {pattern: 'test/*.js', watched: false},
     ],
 
 
@@ -33,11 +33,11 @@ module.exports = function (config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
     preprocessors: {
-      'lib/*.js': ['webpack'],
-      'lib/!(*test|*spec)*.js':['coverage']
+      'test/*.js': ['webpack'],
+      'lib/*.js': ['coverage'],
     },
 
-    webpack: {},
+    webpack: { },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -63,10 +63,10 @@ module.exports = function (config) {
     autoWatch: true,
 
 
-    // coverageReporter: {
-    //   type : 'html',
-    //   dir : 'coverage/'
-    // },
+    coverageReporter: {
+      type : 'lcov',
+      dir : 'coverage/'
+    },
 
     // start these browsers
     // available browser launchers: https://www.npmjs.com/search?q=keywords:karma-launcher
@@ -76,7 +76,7 @@ module.exports = function (config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser instances should be started simultaneously
