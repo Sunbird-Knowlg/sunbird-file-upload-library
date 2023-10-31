@@ -1,6 +1,6 @@
 {
   "name": "@project-sunbird/sunbird-file-upload-library",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "",
   "source": "lib/index.js",
   "main": "dist/main.js",
