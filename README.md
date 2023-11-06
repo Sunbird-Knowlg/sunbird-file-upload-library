@@ -42,6 +42,23 @@ uploader.upload(url, file, csp)
     console.error('Upload failed:', error);
   });
 ```
+
+### Default-File Upload
+
+Use the `upload` method to upload the File, In case you have signed URL and file and your Service Provider in unkown then it will go to the defult condition to upload file via signed URL
+
+```javascript
+
+default:
+  this. uploaderInstance = new DefaultUploader(url, file, maxFileSizeForChunking, this.emit);
+break;
+
+```
+
+### OCI-File Upload
+
+As of now this library supports single file upload for OCI environment in case any one need to add chunk file upload then they need to make changes in oci.js file
+
 ### Chunked Upload
 The library also supports chunked uploads for larger files. You can specify the maxFileSizeForChunking parameter to determine the file size threshold for chunked uploads. If the file size exceeds this threshold, it will be uploaded in chunks. By default, a threshold of 6 MB is used for Azure, but you can provide a different value.
 
