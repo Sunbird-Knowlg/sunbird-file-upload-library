@@ -59,6 +59,44 @@ break;
 
 As of now this library supports single file upload for OCI environment in case any one need to add chunk file upload then they need to make changes in oci.js file
 
+### AWS S3 Upload
+
+The library supports AWS S3 uploads using presigned URLs. You can upload files to S3 by specifying 'aws' as the cloud service provider:
+
+```javascript
+const SunbirdFileUploadLib = require('sunbird-file-upload-lib');
+
+const uploader = new SunbirdFileUploadLib();
+
+const url = 'https://your-bucket.s3.amazonaws.com/your-file?X-Amz-Algorithm=...'; // S3 presigned URL
+const file = document.getElementById('fileInput').files[0];
+const csp = 'aws';
+
+uploader.upload(url, file, csp)
+  .then(response => {
+    console.log('Upload successful:', response);
+  })
+  .catch(error => {
+    console.error('Upload failed:', error);
+  });
+```
+
+For larger files, the AWS uploader supports multipart uploads:
+
+```javascript
+// Chunked upload with a custom threshold (e.g., 10 MB)
+const maxFileSizeForChunking = 10 * 1024 * 1024; // 10 MB
+uploader.upload(url, file, 'aws', maxFileSizeForChunking)
+  .then(response => {
+    console.log('Upload successful:', response);
+  })
+  .catch(error => {
+    console.error('Upload failed:', error);
+  });
+```
+
+**Note:** For AWS S3 multipart uploads with presigned URLs, ensure your backend generates presigned URLs that include the `partNumber` query parameter placeholder.
+
 ### Chunked Upload
 The library also supports chunked uploads for larger files. You can specify the maxFileSizeForChunking parameter to determine the file size threshold for chunked uploads. If the file size exceeds this threshold, it will be uploaded in chunks. By default, a threshold of 6 MB is used for Azure, but you can provide a different value.
 
@@ -87,7 +125,7 @@ uploader.retry()
   });
 ```
 
-Note: Currently this library only supports for the azure cloud provider, to entend the library to support for other cloud providers follow the below steps.
+Note: Currently this library supports Azure, AWS S3, and OCI cloud providers. To extend the library to support for other cloud providers follow the below steps.
 
 ### How to extended to other cloud providers
 
