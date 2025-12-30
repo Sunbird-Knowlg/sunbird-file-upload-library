@@ -61,7 +61,7 @@ As of now this library supports single file upload for OCI environment in case a
 
 ### AWS S3 Upload
 
-The library supports AWS S3 uploads using presigned URLs. You can upload files to S3 by specifying 'aws' as the cloud service provider:
+The library supports AWS S3 uploads using presigned URLs. AWS S3 uploads work by uploading the entire file in a single PUT request to the presigned URL:
 
 ```javascript
 const SunbirdFileUploadLib = require('sunbird-file-upload-lib');
@@ -81,21 +81,7 @@ uploader.upload(url, file, csp)
   });
 ```
 
-For larger files, the AWS uploader supports multipart uploads:
-
-```javascript
-// Chunked upload with a custom threshold (e.g., 10 MB)
-const maxFileSizeForChunking = 10 * 1024 * 1024; // 10 MB
-uploader.upload(url, file, 'aws', maxFileSizeForChunking)
-  .then(response => {
-    console.log('Upload successful:', response);
-  })
-  .catch(error => {
-    console.error('Upload failed:', error);
-  });
-```
-
-**Note:** For AWS S3 multipart uploads with presigned URLs, ensure your backend generates presigned URLs that include the `partNumber` query parameter placeholder.
+**Note:** AWS S3 uploads use a single presigned URL for the entire file upload. The backend should generate a standard S3 presigned PUT URL. No additional configuration or partNumber parameters are required.
 
 ### Chunked Upload
 The library also supports chunked uploads for larger files. You can specify the maxFileSizeForChunking parameter to determine the file size threshold for chunked uploads. If the file size exceeds this threshold, it will be uploaded in chunks. By default, a threshold of 6 MB is used for Azure, but you can provide a different value.
