@@ -50,6 +50,24 @@ describe("#FileUploader", () => {
 
     })
 
+    it("upload method should work with aws csp", () => {
+
+        let eventListener = jasmine.createSpy();
+        spyOn(window, "FileReader").and.returnValue({
+            addEventListener: eventListener
+        })
+        const fileuploader = new FileUploader()
+        const mock = new MockFile()
+        const file = mock.create("test.pdf", 1024, 'application/pdf')
+        expect(fileuploader instanceof FileUploader).toBe(true)
+        fileuploader.upload({ url: "http://test.s3.amazonaws.com/test", file, csp: 'aws', maxFileSizeForChunking: 5 })
+
+        fileuploader.on('error', (error)=> {
+            expect(error).toBeDefined()
+        })
+
+    })
+
     // upload method
 
     // retry method
